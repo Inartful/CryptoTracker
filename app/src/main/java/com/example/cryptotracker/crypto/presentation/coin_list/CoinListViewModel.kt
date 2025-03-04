@@ -6,6 +6,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.cryptotracker.core.domain.util.onError
 import com.example.cryptotracker.core.domain.util.onSuccess
 import com.example.cryptotracker.crypto.domain.CoinDataSource
+import com.example.cryptotracker.crypto.presentation.coin_list.components.previewCoin
 import com.example.cryptotracker.crypto.presentation.models.toCoinUi
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -53,7 +54,10 @@ class CoinListViewModel(private val coinDataSource: CoinDataSource):ViewModel() 
                 .onSuccess { coins ->
                     _state.update { it.copy(
                         isLoading = false,
-                        coins = coins.map { it.toCoinUi() }
+//                        coins = coins.map { it.toCoinUi() }
+                        coins = (1 .. 100).map {
+                            previewCoin.copy(id = it.toString())
+                        }
                     ) }
                 }
                 .onError { error ->

@@ -8,12 +8,15 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -34,6 +37,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.cryptotracker.R
 import com.example.cryptotracker.crypto.presentation.coin_detail.components.InfoCard
+import com.example.cryptotracker.crypto.presentation.coin_list.CoinListAction
 import com.example.cryptotracker.crypto.presentation.coin_list.CoinListState
 import com.example.cryptotracker.crypto.presentation.coin_list.components.previewCoin
 import com.example.cryptotracker.crypto.presentation.models.toDisplayableNumber
@@ -44,6 +48,7 @@ import com.example.cryptotracker.ui.theme.greenBackground
 @Composable
 fun CoinDetailScreen(
     state: CoinListState,
+    onAction: (CoinListAction) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val contentColor = if(isSystemInDarkTheme()) {
@@ -122,6 +127,13 @@ fun CoinDetailScreen(
                     },
                     contentColor = contentColor
                 )
+                Spacer(modifier = Modifier.height(24.dp))
+                Button(
+                    onClick = { onAction(CoinListAction.OnCoinClick(null)) },
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text(text = stringResource(id = R.string.back))
+                }
             }
         }
     }
@@ -138,7 +150,8 @@ private fun CoinDetailScreenPreview() {
             modifier = Modifier
                 .background(
                     MaterialTheme.colorScheme.background
-                )
+                ),
+            onAction = {}
         )
     }
 }

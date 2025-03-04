@@ -8,4 +8,5 @@
     <string name="market_cap">Market Cap</string>
     <string name="price">Price</string>
     <string name="change_last_24h">Change last 24h</string>
+    <string name="back">Go back</string>
 </resources>

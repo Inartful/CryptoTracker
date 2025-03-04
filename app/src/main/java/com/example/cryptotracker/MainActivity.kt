@@ -46,14 +46,14 @@ class MainActivity : ComponentActivity() {
                         state.selectedCoin != null -> {
                             CoinDetailScreen(
                                 state = state,
-                                modifier = Modifier.padding(innerPadding)
+                                modifier = Modifier.padding(innerPadding),
+                                onAction = viewModel::onAction
                             )
                         }
                         else -> {
                             CoinListScreen(
                                 state = state,
                                 modifier = Modifier.padding(innerPadding),
-
                                 onAction = viewModel::onAction
                             )
                         }
